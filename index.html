@@ -1,1 +1,147 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaskPoints</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+header{
+  background:#2563eb;
+  color:white;
+  padding:25px 18px;
+  text-align:center;
+}
+header h1{margin:0;font-size:30px}
+header p{margin:8px 0 0}
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:18px;
+}
+.balance{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 4px 15px #0001;
+  margin-bottom:18px;
+}
+.balance h2{
+  margin:5px;
+  font-size:35px;
+  color:#2563eb;
+}
+.card{
+  background:white;
+  border-radius:16px;
+  padding:18px;
+  margin:12px 0;
+  box-shadow:0 3px 12px #0001;
+}
+.card h3{margin-top:0}
+button{
+  width:100%;
+  border:0;
+  border-radius:10px;
+  padding:13px;
+  background:#2563eb;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+}
+button:disabled{
+  background:#aaa;
+}
+.notice{
+  background:#fff7d6;
+  border-left:5px solid #eab308;
+  padding:12px;
+  border-radius:8px;
+  margin-top:15px;
+  font-size:14px;
+}
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>TaskPoints</h1>
+  <p>Complete activities and collect points</p>
+</header>
+
+<div class="container">
+
+  <div class="balance">
+    <p>Your Points</p>
+    <h2 id="points">0</h2>
+    <p>Points are rewards, not cash.</p>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Daily Visit</h3>
+    <p>Visit the website once per day.</p>
+    <p><b>+10 Points</b></p>
+    <button onclick="completeTask(this,10)">Complete Task</button>
+  </div>
+
+  <div class="card">
+    <h3>📖 Read & Learn</h3>
+    <p>Read an article and learn something useful.</p>
+    <p><b>+20 Points</b></p>
+    <button onclick="completeTask(this,20)">Complete Task</button>
+  </div>
+
+  <div class="card">
+    <h3>⭐ Daily Bonus</h3>
+    <p>Claim your daily bonus.</p>
+    <p><b>+5 Points</b></p>
+    <button onclick="completeTask(this,5)">Claim Bonus</button>
+  </div>
+
+  <div class="notice">
+    <b>Important:</b> Points shown on this website are reward points.
+    They are not guaranteed cash and cannot be represented as money
+    unless a real reward/payout system is provided.
+  </div>
+
+</div>
+
+<footer>
+  © 2026 TaskPoints · Privacy · Terms · Contact
+</footer>
+
+<script>
+let points = Number(localStorage.getItem("taskPoints") || 0);
+
+document.getElementById("points").textContent = points;
+
+function completeTask(button, amount){
+  if(button.disabled) return;
+
+  points += amount;
+  localStorage.setItem("taskPoints", points);
+  document.getElementById("points").textContent = points;
+
+  button.disabled = true;
+  button.textContent = "Completed ✓";
+}
+</script>
+
+</body>
+</html>
