@@ -1,5 +1,5 @@
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -137,11 +137,4 @@ function completeTask(button, amount){
   points += amount;
   localStorage.setItem("taskPoints", points);
   document.getElementById("points").textContent = points;
-
-  button.disabled = true;
-  button.textContent = "Completed ✓";
-}
-</script>
-
-</body>
-</html>
+  
